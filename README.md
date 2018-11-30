@@ -7,7 +7,7 @@ Can also select fields of population like:
 "parent{name age}/children{name toy}"
 
 Can limit the number of subdocuments in population
-"parent{name age}/children{name}[5]"
+"parent{name age}/children[5]{name}"
 
 
 # Usage

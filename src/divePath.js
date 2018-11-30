@@ -1,8 +1,8 @@
 
 function parsePopulateString(pathAndSel) {
-    const matches = pathAndSel.match(/([^[\]{}]+)(?:\[(\d+)\])?(?:{([^{}]+)+})?/)
+    const matches = pathAndSel.match(/([^[\]{}]+)(?:\[(\d+)\])?(?:{([^{}]+)+})?(?:\[(\d+)\])?/)
     const path = matches[1] || pathAndSel
-    const limit = parseInt(matches[2] || 0)
+    const limit = parseInt(matches[4] || matches[2] || 0)
     const select = matches[3] || ''
 
     let populate = (limit > 0)

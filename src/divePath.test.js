@@ -48,6 +48,17 @@ describe('buildDivePath', () => {
         })
     })
 
+    it('should build populate options with select and limit', () => {
+        const path = 'aaa{xa,ya}[123]/bbb{xb,yb}[456]'
+        expect(buildDivePath(path)).toEqual({
+            path: 'aaa', options:{limit: 123}, select: 'xa,ya',
+            populate: {
+                path: 'bbb', options:{limit: 456}, select: 'xb,yb'
+            }
+        })
+    })
+
+
     it('should accept path array', () => {
         const paths = ['aaa/bbb', 'xxx/yyy']
         expect(buildDivePath(paths)).toEqual([
