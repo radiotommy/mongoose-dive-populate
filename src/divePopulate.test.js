@@ -41,8 +41,10 @@ describe('populate', () => {
 
     const tom = await Fan.create({name: 'Tom', age: 20, email: 'tom@example.com'})
     const jerry = await Fan.create({name: 'Jerry', age: 30, email: 'jerry@example.com'})
+    const harry = await Fan.create({name: 'Harry', age: 10, email: 'harry@example.com'})
+    const potter = await Fan.create({name: 'Potter', age: 10, email: 'potter@example.com'})
 
-    const messi = await Player.create({name: 'Messi', number: 10, fans: [tom._id, jerry._id]})
+    const messi = await Player.create({name: 'Messi', number: 10, fans: [tom._id, jerry._id, harry._id, potter._id]})
     const barcelona = await Club.create({name: 'Barcelona', players: [messi._id]})
   })
 
@@ -139,4 +141,12 @@ describe('populate', () => {
     expect(obj.players[0].fans.length).toEqual(1)
   })
 
+  it('should be able to skip and limit array length', async () => {
+    const barcelona = await Club.findOne({name: 'Barcelona'})
+    await barcelona.diveTo('players/fans[2:1]').execPopulate()
+    const obj = barcelona.toObject()
+
+    expect(obj.players[0].fans.length).toEqual(1)
+    expect(obj.players[0].fans[0].name).toEqual('Harry')
+  })
 })

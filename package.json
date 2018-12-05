@@ -1,6 +1,6 @@
 {
   "name": "mongoose-dive-populate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A mongoose plugin to populate into nested documents in depth by a easy reading path",
   "main": "index.js",
   "scripts": {
